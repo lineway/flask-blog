@@ -12,3 +12,4 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:19910203@127.0.0.1:3306/blog_db"
