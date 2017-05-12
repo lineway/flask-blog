@@ -68,6 +68,16 @@ class Comment(db.Model):
         return "<Comment '{}'>".format(self.text[:15])
 
 
+class Tag(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String(255))
+
+    def __init__(self, title):
+        self.title = title
+
+    def __repr__(self):
+        return "<Tag '{}'>".format(self.title)
+
 
 @app.route('/')
 def home():
