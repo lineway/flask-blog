@@ -94,14 +94,14 @@ def siderbar_data():
 
 
 @app.route('/')
-@app.route('<int:page>')
+@app.route("/<int:page>")
 def home(page=1):
     posts = Post.query.order_by(
         Post.publish_date.desc(),
     ).paginate(page, 10)
     recent, top_tags = siderbar_data()
 
-    return render_template('home.html', posts=posts, recent=recent, top_tags=top_tags)
+    return render_template('index.html', posts=posts, recent=recent, top_tags=top_tags)
 
 
 @app.route('/post/<int:post_id>')
@@ -114,7 +114,7 @@ def post(post_id):
     return render_template('post.html', post=post, tags=tags, comments=comments, recent=recent, top_tags=top_tags)
 
 
-@app.route('tag/<string:tag_name>')
+@app.route('/tag/<string:tag_name>')
 def tag(tag_name):
     tag = Tag.query.filter_by(title=tag_name).first_or_404()
     posts = tag.posts.order_by(Post.publish_date.desc()).all()
