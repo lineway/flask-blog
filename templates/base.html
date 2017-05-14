@@ -39,18 +39,12 @@
 
 
 <body>
-    <div class="ui vertical inverted sticky menu fixed top" style="left: 0px; top: 0px; width: 250px !important; height: 1813px !important; margin-top: 0px;">
-        <div class="toc" style="min-height: 1813px;">
-            <div class="item">
-                <a href="{{ url_for('home') }}" class="ui logo icon image">
-                    <img src="static/images/bear.jpg" width="35px" height="35px">
-                </a>
-                <a href="{{ url_for('home') }}"><b>BearHome</b></a>
-            </div>
-            <a href="{{ url_for('home') }}" class="item"><i class="home icon"></i>首页</a>
-        </div>
+    <div class="ui bottom attached segment pushable">
+      <div class="ui visible inverted left vertical sidebar menu">
+        <a class="item" href="{{ url_for('home') }}"><i class="home icon"></i> Home </a>
+      </div>
+        {% block body %}
+        {% endblock %}
     </div>
-{% block body %}
-{% endblock %}
 </body>
 </html>

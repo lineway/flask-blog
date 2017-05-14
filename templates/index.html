@@ -3,3 +3,14 @@
 {% block title %}
 Home
 {% endblock %}
+
+{% block body %}
+    <div class="pusher">
+        <div class="ui basic segment">
+            {% for post in posts.items %}
+                <h3 class="ui header">{{ post.title }}</h3>
+                <div>{{ post.text | truncate(255) | safe }}</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
