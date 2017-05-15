@@ -13,14 +13,16 @@
         {% endfor %}
     </div>
     <div class="ui list two wide column">
-        <h5 class="header">Recent Posts</h5>
+        <h4 class="header">Recent Posts</h4>
         {% for post in recent %}
             <div class="item">
-                <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                <h5 class="header">
+                    <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                </h5>
                 <div class="description">{{ post.text | truncate(60) | safe }}</div>
             </div>
         {% endfor %}
-        <h5 class="header">Popular Tags</h5>
+        <h4 class="header">Popular Tags</h4>
         {% for tag in top_tags %}
             <div class="item">
                 <a href="{{ url_for('tag', tag_name=tag[0].title) }}">{{ tag[0].title }}</a>
