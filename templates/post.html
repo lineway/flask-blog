@@ -3,3 +3,37 @@
     Post
 {% endblock %}
 
+{% block content %}
+    <div class="eleven wide column">
+        <h3 class="ui header">{{ post.title }}</h3>
+        <div class="ui clearing divider"></div>
+        <div class="ui eleven wide column">
+            {% for tag in tags %}
+                <a class="ui teal label" href="{{ url_for('tag', tag_name=tag.title) }}">{{ tag.title }}</a>
+            {% endfor %}
+            <br>
+            <br>
+            <a class="ui label" href="{{ url_for('user', username=post.user.username) }}">
+                <i class="user icon"></i>{{ post.user.username }}</a>
+        <div class="ui clearing divider"></div>
+        <p>{{ post.text }}</p>
+        </div>
+    </div>
+    <div class="ui list two wide column">
+        <h4 class="header">Recent Posts</h4>
+        {% for post in recent %}
+            <div class="item">
+                <h5 class="header">
+                    <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                </h5>
+                <div class="description">{{ post.text | truncate(60) | safe }}</div>
+            </div>
+        {% endfor %}
+        <h4 class="header">Popular Tags</h4>
+        {% for tag in top_tags %}
+            <div class="item">
+                <a href="{{ url_for('tag', tag_name=tag[0].title) }}">{{ tag[0].title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
