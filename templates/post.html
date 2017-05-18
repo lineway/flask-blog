@@ -20,13 +20,30 @@
         </div>
         <div class="ui comments">
             <h3 class="ui dividing header">Comments</h3>
-            <form action="#" method="post">
+            <form action="{{ url_for('post', post_id=post.id) }}" method="post" class="ui reply form">
+                {{ form.hidden_tag() }}
                 <div class="field">
-                    <textarea></textarea>
+                    {{ form.name.label }}
+                    {% if form.name.errors %}
+                        {% for e in form.name.errors %}
+                            <p>{{ e }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form.name(class_='form-control') }}
                 </div>
+                <div class="field">
+                    {{ form.text.label }}
+                    {% if form.text.label %}
+                        {% for e in form.text.errors %}
+                            <p class="help-block">{{ e }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form.text(class_='form-control') }}
+                </div>
+                <div class="ui blue labeled submit icon button"><i class="icon edit">Add Comment</i></div>
             </form>
         </div>
-    </div>
+        </div>
     <div class="ui list two wide column">
         <h4 class="header">Recent Posts</h4>
         {% for post in recent %}

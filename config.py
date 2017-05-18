@@ -3,7 +3,7 @@ __author__ = "piels"
 
 
 class Config(object):
-    pass
+    SECRET_KEY = '40ee3838e2f45a494484d869d2acd24804d44835135b10e54456c8afd1d75eb2'
 
 
 class ProdConfig(Config):
