@@ -20,7 +20,7 @@
         </div>
         <div class="ui comments">
             <h3 class="ui dividing header">Comments</h3>
-            <form action="{{ url_for('post', post_id=post.id) }}" method="post" class="ui reply form">
+            <form action="{{ url_for('post', post_id=post.id) }}" method="POST" class="ui form">
                 {{ form.hidden_tag() }}
                 <div class="field">
                     {{ form.name.label }}
@@ -55,7 +55,6 @@
                         </div>
                         </div>
                     {% endfor %}
-
                 </div>
             </div>
         </div>
