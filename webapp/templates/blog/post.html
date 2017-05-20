@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/base.html' %}
 {% block title %}
     Post
 {% endblock %}
@@ -9,18 +9,18 @@
         <div class="ui clearing divider"></div>
         <div class="ui eleven wide column">
             {% for tag in tags %}
-                <a class="ui teal label" href="{{ url_for('tag', tag_name=tag.title) }}">{{ tag.title }}</a>
+                <a class="ui teal label" href="{{ url_for('blog.tag', tag_name=tag.title) }}">{{ tag.title }}</a>
             {% endfor %}
             <br>
             <br>
-            <a class="ui label" href="{{ url_for('user', username=post.user.username) }}">
+            <a class="ui label" href="{{ url_for('blog.user', username=post.user.username) }}">
                 <i class="user icon"></i>{{ post.user.username }}</a>
         <div class="ui clearing divider"></div>
         <p>{{ post.text }}</p>
         </div>
         <div class="ui comments">
             <h3 class="ui dividing header">Add Comment</h3>
-            <form action="{{ url_for('post', post_id=post.id) }}" method="POST" class="ui form">
+            <form action="{{ url_for('blog.post', post_id=post.id) }}" method="POST" class="ui form">
                 {{ form.hidden_tag() }}
                 <div class="field">
                     {{ form.name.label }}
@@ -70,7 +70,7 @@
         {% for post in recent %}
             <div class="item">
                 <h5 class="header">
-                    <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                    <a href="{{ url_for('blog.post', post_id=post.id) }}">{{ post.title }}</a>
                 </h5>
                 <div class="description">{{ post.text | truncate(60) | safe }}</div>
             </div>
@@ -78,7 +78,7 @@
         <h4 class="header">Popular Tags</h4>
         {% for tag in top_tags %}
             <div class="item">
-                <a href="{{ url_for('tag', tag_name=tag[0].title) }}">{{ tag[0].title }}</a>
+                <a href="{{ url_for('blog.tag', tag_name=tag[0].title) }}">{{ tag[0].title }}</a>
             </div>
         {% endfor %}
     </div>

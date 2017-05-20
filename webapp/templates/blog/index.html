@@ -1,32 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'blog/base.html' %}
 
 {% block title %}
-    {{ tag.title }}
+    Home
 {% endblock %}
 
 {% block content %}
     <div class="eleven wide column">
-        <h2 class="ui header">Post With Tag {{ tag.title }}</h2>
-        {% for post in posts %}
+        {% for post in posts.items %}
             <h3 class="ui header">{{ post.title }}</h3>
-            {{ post.text | truncate(255) | safe }}
-            <a href="{{ url_for('post', post_id=post.id) }}">Read More</a>
+                {{ post.text | truncate(512) | safe }}
+                <a href="{{ url_for('blog.post', post_id=post.id) }}">Read More</a>
         {% endfor %}
     </div>
     <div class="ui list two wide column">
-        <h4 class="ui header">Recent Post</h4>
+        <h4 class="header">Recent Posts</h4>
         {% for post in recent %}
             <div class="item">
                 <h5 class="header">
-                    <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                    <a href="{{ url_for('blog.post', post_id=post.id) }}">{{ post.title }}</a>
                 </h5>
                 <div class="description">{{ post.text | truncate(60) | safe }}</div>
             </div>
         {% endfor %}
-        <h4 class="ui header">Popular Tag</h4>
+        <h4 class="header">Popular Tags</h4>
         {% for tag in top_tags %}
             <div class="item">
-                <a href="{{ url_for('tag', tag_name=tag[0].title) }}">{{ tag[0].title }}</a>
+                <a href="{{ url_for('blog.tag', tag_name=tag[0].title) }}">{{ tag[0].title }}</a>
             </div>
         {% endfor %}
     </div>

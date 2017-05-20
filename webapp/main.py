@@ -113,7 +113,7 @@ def home(page=1):
     ).paginate(page, 10)
     recent, top_tags = siderbar_data()
 
-    return render_template('index.html', posts=posts, recent=recent, top_tags=top_tags)
+    return render_template('blog/index.html', posts=posts, recent=recent, top_tags=top_tags)
 
 
 @app.route('/post/<int:post_id>', methods=['GET', 'POST'])
@@ -132,7 +132,7 @@ def post(post_id):
     comments = post.comments.order_by(Comment.date.desc()).all()
     recent, top_tags = siderbar_data()
 
-    return render_template('post.html', post=post, tags=tags, comments=comments, recent=recent, top_tags=top_tags,
+    return render_template('blog/post.html', post=post, tags=tags, comments=comments, recent=recent, top_tags=top_tags,
                            form=form)
 
 
@@ -142,7 +142,7 @@ def tag(tag_name):
     posts = tag.posts.order_by(Post.publish_date.desc()).all()
     recent, top_tags = siderbar_data()
 
-    return render_template('tag.html', tag=tag, posts=posts, recent=recent, top_tags=top_tags)
+    return render_template('blog/tag.html', tag=tag, posts=posts, recent=recent, top_tags=top_tags)
 
 
 @app.route('/user/<string:username>')
