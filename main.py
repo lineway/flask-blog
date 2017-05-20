@@ -116,7 +116,7 @@ def home(page=1):
     return render_template('index.html', posts=posts, recent=recent, top_tags=top_tags)
 
 
-@app.route('/post/<int:post_id>')
+@app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def post(post_id):
     form = CommentForm()
     if form.validate_on_submit():

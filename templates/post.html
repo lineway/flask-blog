@@ -19,7 +19,7 @@
         <p>{{ post.text }}</p>
         </div>
         <div class="ui comments">
-            <h3 class="ui dividing header">Comments</h3>
+            <h3 class="ui dividing header">Add Comment</h3>
             <form action="{{ url_for('post', post_id=post.id) }}" method="POST" class="ui form">
                 {{ form.hidden_tag() }}
                 <div class="field">
@@ -29,7 +29,7 @@
                             <p>{{ e }}</p>
                         {% endfor %}
                     {% endif %}
-                    {{ form.name(class_='form-control') }}
+                    {{ form.name }}
                 </div>
                 <div class="field">
                     {{ form.text.label }}
@@ -38,23 +38,29 @@
                             <p class="help-block">{{ e }}</p>
                         {% endfor %}
                     {% endif %}
-                    {{ form.text(class_='form-control') }}
+                    {{ form.text }}
                 </div>
-                <div class="ui primary submit button">Submit</div>
+                <input type="submit" value="Submit">
+            <div class="ui divider"></div>
             </form>
-            <div class="ui clearing divider">
-                <div class="comment">
-                    {% for comment in comments %}
-                        <div class="content">
-                            <a href="" class="author">{{ comment.name.data }}</a>
-                        <div class="metadata">
-                            <div class="date">{{ comment.date.data }}</div>
-                        </div>
-                        <div class="text">
-                            <p>{{ comment.text.data }}</p>
-                        </div>
-                        </div>
-                    {% endfor %}
+            <div>
+                <div class="ui comment">
+                    <div class="comment">
+                        <h3 class="ui header">Comments</h3>
+                        {% if comments | length==0 %}
+                            <p>There are no comments for this post.</p>
+                        {% else %}
+                            {% for comment in comments %}
+                                <div class="content">
+                                    <p class="author"><i class="icon user"></i>{{ comment.name }}</p>
+                                </div>
+                                <div class="metadata">
+                                <span class="date">{{ comment.date }}</span>
+                                </div>
+                                <div class="text">{{ comment.text }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
