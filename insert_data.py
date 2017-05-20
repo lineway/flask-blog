@@ -1,12 +1,12 @@
 # coding:utf-8
 __author__ = "piels"
 
-
-from main import db, User, Tag, Post
-
 import datetime
 import random
+
 from faker import Faker
+
+from webapp.main import db, User, Tag, Post
 fake = Faker()
 
 user = User.query.get(1)
