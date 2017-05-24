@@ -53,7 +53,7 @@ class RegisterForm(Form):
 class PostForm(Form):
     title = StringField('Title', [DataRequired(), Length(max=255)])
     text = TextAreaField('Content', [DataRequired()])
-    
+
 
 class CommentForm(Form):
     name = StringField(
