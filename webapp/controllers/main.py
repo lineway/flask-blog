@@ -24,8 +24,10 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        flash("You have been logged out.", category='success')
-        return redirect(url_for('.home'))
+        flash("You have been logged in.", category='success')
+        return redirect(url_for('blog.home'))
+
+    return render_template('login.html', form=form)
 
 
 @main_blueprint.route('/logout', methods=['GET', 'POST'])

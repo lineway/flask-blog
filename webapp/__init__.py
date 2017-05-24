@@ -5,6 +5,7 @@ __author__ = "piels"
 from flask import Flask, redirect, url_for
 from models import db
 from controllers.blog import blog_blueprint
+from controllers.main import main_blueprint
 from webapp.extensions import bcrypt
 
 
@@ -20,4 +21,5 @@ def create_app(object_name):
         return redirect(url_for('blog.home'))
 
     app.register_blueprint(blog_blueprint)
+    app.register_blueprint(main_blueprint)
     return app
